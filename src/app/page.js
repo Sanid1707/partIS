@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -19,8 +21,22 @@ import {
   Package,
 } from "@/components/ui/lucide-icons";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export default function LandingPage() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const aircraftImages = [
+    "/images/plane1.jpg",
+    "/images/plane2.jpg",
+    "/images/plane3.jpg",
+    "/images/plane4.jpg"
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
@@ -42,13 +58,33 @@ export default function LandingPage() {
           <div className="flex items-center space-x-4">
             <Button variant="outline" size="sm" className="hidden md:inline-flex transition-all duration-300 hover:bg-gray-50">Log in</Button>
             <Button size="sm" className="hidden md:inline-flex bg-black hover:bg-gray-800 transition-all duration-300">Book a Demo</Button>
-            <button className="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors duration-300">
+            <button 
+              onClick={toggleMenu} 
+              className="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors duration-300"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
         </div>
+        
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="md:hidden px-4 py-2 pb-4 bg-white shadow-md">
+            <div className="flex flex-col space-y-3">
+              <a href="#" className="text-gray-700 hover:text-black font-medium transition-colors duration-300 py-2">Home</a>
+              <a href="#" className="text-gray-700 hover:text-black font-medium transition-colors duration-300 py-2">Solutions</a>
+              <a href="#" className="text-gray-700 hover:text-black font-medium transition-colors duration-300 py-2">Resources</a>
+              <a href="#" className="text-gray-700 hover:text-black font-medium transition-colors duration-300 py-2">About</a>
+              <a href="#" className="text-gray-700 hover:text-black font-medium transition-colors duration-300 py-2">Contact</a>
+              <div className="flex flex-col space-y-2 pt-2">
+                <Button variant="outline" size="sm" className="transition-all duration-300 hover:bg-gray-50">Log in</Button>
+                <Button size="sm" className="bg-black hover:bg-gray-800 transition-all duration-300">Book a Demo</Button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -71,7 +107,17 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="md:w-1/2">
-          <div className="bg-gray-200 rounded-xl h-[400px] w-full shadow-md transition-shadow duration-300 hover:shadow-lg"></div>
+          <div className="bg-gray-200 rounded-xl h-[400px] w-full shadow-md transition-shadow duration-300 hover:shadow-lg flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image 
+                src={aircraftImages[1]} 
+                alt="Aircraft illustration" 
+                fill 
+                className="object-cover"
+                style={{ filter: "brightness(0.9)" }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -103,8 +149,15 @@ export default function LandingPage() {
         <div className="flex flex-col md:flex-row gap-12 justify-center">
           <Card className="md:w-[350px] text-center transition-all duration-300 hover:shadow-md">
             <CardHeader className="flex items-center justify-center pb-2">
-              <div className="bg-gray-200 h-24 w-24 rounded-full flex items-center justify-center mb-4">
-                <div className="bg-gray-300 h-16 w-16 rounded-md"></div>
+              <div className="bg-gray-200 h-24 w-24 rounded-full flex items-center justify-center mb-4 overflow-hidden">
+                <div className="relative h-24 w-24">
+                  <Image 
+                    src={aircraftImages[0]} 
+                    alt="Deadline icon" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <CardTitle className="text-2xl mt-4">16 October 2025</CardTitle>
             </CardHeader>
@@ -116,8 +169,15 @@ export default function LandingPage() {
 
           <Card className="md:w-[350px] text-center transition-all duration-300 hover:shadow-md">
             <CardHeader className="flex items-center justify-center pb-2">
-              <div className="bg-gray-200 h-24 w-24 rounded-full flex items-center justify-center mb-4">
-                <div className="bg-gray-300 h-16 w-16 rounded-md"></div>
+              <div className="bg-gray-200 h-24 w-24 rounded-full flex items-center justify-center mb-4 overflow-hidden">
+                <div className="relative h-24 w-24">
+                  <Image 
+                    src={aircraftImages[3]} 
+                    alt="Deadline icon" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <CardTitle className="text-2xl mt-4">22 February 2026</CardTitle>
             </CardHeader>
@@ -136,7 +196,16 @@ export default function LandingPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md"></div>
+          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image 
+                src={aircraftImages[2]} 
+                alt="Templates and Guides" 
+                fill 
+                className="object-cover"
+              />
+            </div>
+          </div>
           <div className="space-y-6">
             <h3 className="text-3xl font-bold">Templates & Guides</h3>
             <p className="text-xl text-gray-700 leading-relaxed">
@@ -161,14 +230,32 @@ export default function LandingPage() {
               View a Demo
             </Button>
           </div>
-          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md"></div>
+          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image 
+                src={aircraftImages[0]} 
+                alt="Software Tool" 
+                fill 
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Trusted Expertise */}
       <section className="container mx-auto px-4 py-16 max-w-6xl bg-gradient-to-b from-white to-gray-50">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md"></div>
+          <div className="bg-gray-200 rounded-xl h-[300px] shadow-sm transition-shadow duration-300 hover:shadow-md flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image 
+                src={aircraftImages[1]} 
+                alt="Trusted Expertise" 
+                fill 
+                className="object-cover"
+              />
+            </div>
+          </div>
           <div className="space-y-6">
             <h3 className="text-3xl font-bold">Trusted Expertise</h3>
             <p className="text-xl text-gray-700 leading-relaxed">
@@ -199,10 +286,17 @@ export default function LandingPage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {["AOC Holders", "Part-CAMOs", "Part-145", "Part-ORA", "ANSPs", "Part-21", "Aerodromes", "Exclusions"].map((item) => (
+          {["AOC Holders", "Part-CAMOs", "Part-145", "Part-ORA", "ANSPs", "Part-21", "Aerodromes", "Exclusions"].map((item, index) => (
             <div key={item} className="bg-gray-50 rounded-full py-4 px-8 flex items-center gap-3 shadow-sm border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-md hover:bg-white cursor-pointer">
-              <div className="bg-gray-200 text-gray-700 h-8 w-8 rounded-full flex items-center justify-center">
-                <Plane className="h-4 w-4" />
+              <div className="bg-gray-200 text-gray-700 h-8 w-8 rounded-full flex items-center justify-center overflow-hidden">
+                <div className="relative h-8 w-8">
+                  <Image 
+                    src={aircraftImages[index % 4]} 
+                    alt="Airplane icon" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <span className="text-lg font-medium">{item}</span>
             </div>
