@@ -90,8 +90,8 @@ export default function LandingPage() {
               existing Safety Management System.
             </p>
             <p className="text-xl text-gray-700 leading-relaxed">
-              Whether you're an AOC holder, CAMO, ATO, ANSP, or Maintenance Organisation, Part-IS compliance is no 
-              longer optional, it's a regulatory obligation.
+              Whether you&apos;re an AOC holder, CAMO, ATO, ANSP, or Maintenance Organisation, Part-IS compliance is no 
+              longer optional, it&apos;s a regulatory obligation.
             </p>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function LandingPage() {
       <section className="container mx-auto px-4 py-12 max-w-6xl">
         <div className="bg-gray-100 rounded-lg p-8 text-center shadow-sm border border-gray-200 transition-shadow duration-300 hover:shadow-md">
           <p className="text-2xl text-gray-800">
-            We're also proportionality-aware, adapting tools for small operators and high-complexity organisations alike.
+            We&apos;re also proportionality-aware, adapting tools for small operators and high-complexity organisations alike.
           </p>
         </div>
       </section>
